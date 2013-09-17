@@ -1,0 +1,21 @@
+<% collect_posts.each do |post| %>
+<div class="span8 well">
+  <h4>
+    <%= link_to "#{post.title}", post.url %>
+  </h4>
+  <p><%= post.description %></p>
+  <p>
+    <span class="quiet">posted by </span>
+    <%= post.user.username %>
+  </p>
+  <small>
+    <%= link_to "View", post_path(post), class: "btn btn-mini" %>
+    <%= post_editable(post) %>
+    <span>
+      <a href="<%= post_path(post) %>#post-comment">
+        <%= pluralize(post.comments.count, "comment") %>
+      </a>
+    </span>
+  </small>
+</div>
+<% end %>

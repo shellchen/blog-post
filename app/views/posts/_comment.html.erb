@@ -1,0 +1,10 @@
+<% collect_comments.each do |comm| %>
+<div class="row">
+  <div class="span8 well">
+    <em><%= comm.content %></em>
+    <br>
+    <span class="quiet">Commented by </span>
+    <%= label_tag "#{comm.user.username}" %>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,3 @@
+<%= render("layouts/topic", topic: "Listing Posts » #{@category.name}") %>
+
+<%= render("posts/post", collect_posts: @category.posts) %>
