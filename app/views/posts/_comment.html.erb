@@ -1,5 +1,10 @@
 <% collect_comments.each do |comm| %>
 <div class="row">
+  <div class="span1 well text-center">
+    <%= link_to("+", vote_post_comment_path(comm.post, comm, vote: true), method: :post) if logged_in? %>
+    <span><%= comment_vote_factor(comm) %></span>
+    <%= link_to("-", vote_post_comment_path(comm.post, comm, vote: false), method: :post) if logged_in? %>
+  </div>
   <div class="span8 well">
     <em><%= comm.content %></em>
     <br>
