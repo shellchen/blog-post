@@ -1,0 +1,1 @@
+$("#comment-<%= @comment.id %>-vote").html("<%= pluralize(comment_vote_factor(@comment), "vote") %>");
