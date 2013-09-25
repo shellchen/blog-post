@@ -1,9 +1,11 @@
 <% collect_posts.each do |post| %>
 <div class="row">
   <div class="span1 well text-center">
-    <%= link_to("+", vote_post_path(post, vote: true), method: :post) if logged_in? %>
-    <span><%= post_vote_factor(post) %></span>
-    <%= link_to("-", vote_post_path(post, vote: false), method: :post) if logged_in? %>
+    <%= link_to("", vote_post_path(post, vote: true), method: :post, remote: true, class: "icon-arrow-up") if logged_in? %>
+    <br>
+    <span id="post-<%= post.id %>-vote"><%= pluralize(post_vote_factor(post), "vote") %></span>
+    <br>
+    <%= link_to("", vote_post_path(post, vote: false), method: :post, remote: true, class: "icon-arrow-down") if logged_in? %>
   </div>
   <div class="span8 well">
     <h4>

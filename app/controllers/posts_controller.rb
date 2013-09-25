@@ -44,8 +44,13 @@ class PostsController < ApplicationController
   def vote
     if Vote.where(voteable: @post, user: current_user).blank?
       Vote.create(voteable: @post, user: current_user, vote: params[:vote])
-      flash[:notice] = "Your vote was created."
-      redirect_to root_path
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Your vote was created."
+          redirect_to root_path
+        end
+        format.js
+      end
     else
       flash[:alert] = "You had voted."
       redirect_to root_path

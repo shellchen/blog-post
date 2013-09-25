@@ -15,8 +15,13 @@ class CommentsController < ApplicationController
     @comment = @post.comments.find(params[:id])
     if Vote.where(voteable: @comment, user: current_user).blank?
       Vote.create(voteable: @comment, user: current_user, vote: params[:vote])
-      flash[:notice] = "Your vote was created."
-      redirect_to post_path(@post)
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Your vote was created."
+          redirect_to post_path(@post)
+        end
+        format.js
+      end
     else
       flash[:alert] = "You had voted."
       redirect_to post_path(@post)
