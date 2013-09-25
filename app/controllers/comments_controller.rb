@@ -11,6 +11,11 @@ class CommentsController < ApplicationController
     end
   end
 
+  def vote
+    Vote.create(voteable: @comment, user: current_user, vote: params[:vote])
+    flash[:notice] = "Your vote was created."
+  end
+
   private
   def set_post
     @post = Post.find(params[:post_id])

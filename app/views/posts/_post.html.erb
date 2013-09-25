@@ -1,21 +1,28 @@
 <% collect_posts.each do |post| %>
-<div class="span8 well">
-  <h4>
-    <%= link_to "#{post.title}", post.url %>
-  </h4>
-  <p><%= post.description %></p>
-  <p>
-    <span class="quiet">posted by </span>
-    <%= post.user.username %>
-  </p>
-  <small>
-    <%= link_to "View", post_path(post), class: "btn btn-mini" %>
-    <%= post_editable(post) %>
-    <span>
-      <a href="<%= post_path(post) %>#post-comment">
-        <%= pluralize(post.comments.count, "comment") %>
-      </a>
-    </span>
-  </small>
+<div class="row">
+  <div class="span1 well text-center">
+    <%= link_to("+", vote_post_path(post, vote: true), method: :post) if logged_in? %>
+    <span><%= vote_factor(post) %></span>
+    <%= link_to("-", vote_post_path(post, vote: false), method: :post) if logged_in? %>
+  </div>
+  <div class="span8 well">
+    <h4>
+      <%= link_to "#{post.title}", post.url %>
+    </h4>
+    <p><%= post.description %></p>
+    <p>
+      <span class="quiet">posted by </span>
+      <%= post.user.username %>
+    </p>
+    <small>
+      <%= link_to "View", post_path(post), class: "btn btn-mini" %>
+      <%= post_editable(post) %>
+      <span>
+        <a href="<%= post_path(post) %>#post-comment">
+          <%= pluralize(post.comments.count, "comment") %>
+        </a>
+      </span>
+    </small>
+  </div>
 </div>
 <% end %>
