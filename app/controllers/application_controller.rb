@@ -14,8 +14,15 @@ class ApplicationController < ActionController::Base
   end
 
   def require_user
-    if !logged_in?
+    unless logged_in?
       flash[:alert] = "Must login first!"
+      redirect_to root_path
+    end
+  end
+
+  def require_admin
+    unless logged_in? && current_user.is_admin?
+      flash[:alert] = "Can\'t do."
       redirect_to root_path
     end
   end
