@@ -7,6 +7,8 @@ class Post < ActiveRecord::Base
   has_many :categories, through: :category_postships
   has_many :votes, as: :voteable
 
+  after_validation :generate_slug
+
   def creator
     self.user
   end
@@ -17,5 +19,13 @@ class Post < ActiveRecord::Base
 
   def minus_vote_count
     self.votes.where(vote: false).count
+  end
+
+  def generate_slug
+    self.slug = self.title.gsub(" ", "-").downcase
+  end
+
+  def to_param
+    self.slug
   end
 end
