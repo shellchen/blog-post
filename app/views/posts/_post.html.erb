@@ -3,7 +3,7 @@
   <div class="span1 well text-center">
     <%= link_to("", vote_post_path(post, vote: true), method: :post, remote: true, class: "icon-arrow-up") if logged_in? %>
     <br>
-    <span id="post-<%= post.id %>-vote"><%= pluralize(post_vote_factor(post), "vote") %></span>
+    <span id="post-<%= post.slug %>-vote"><%= pluralize(post_vote_factor(post), "vote") %></span>
     <br>
     <%= link_to("", vote_post_path(post, vote: false), method: :post, remote: true, class: "icon-arrow-down") if logged_in? %>
   </div>

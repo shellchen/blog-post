@@ -1,1 +1,1 @@
-$("#post-<%= @post.id %>-vote").html("<%= pluralize(post_vote_factor(@post), "vote") %>");
+$("#post-<%= @post.slug %>-vote").html("<%= pluralize(post_vote_factor(@post), "vote") %>");
