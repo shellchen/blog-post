@@ -8,10 +8,6 @@ module Voteable
   end
 
   module  InstanceMethods
-    def my_instance_method
-      puts "my instance method"
-    end
-    
     def plus_vote_count
       self.votes.where(vote: true).count
     end
@@ -24,7 +20,6 @@ module Voteable
   module ClassMethods
     def my_class_method
       has_many :votes, as: :voteable
-      puts "my class methods."
     end
   end
 end
