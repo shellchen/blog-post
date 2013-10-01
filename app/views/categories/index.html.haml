@@ -1,0 +1,6 @@
+= render("layouts/topic", topic: "Categories")
+- @categories.each do |cate|
+  %div.span8.well
+    %h4= link_to "#{cate.name}", "#{edit_category_path(cate)}"
+    %p
+      %a{href: "#{category_path(cate)}"}= pluralize(cate.posts.count, "post")

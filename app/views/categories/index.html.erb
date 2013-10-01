@@ -1,8 +1,0 @@
-<%= render("layouts/topic", topic: "Categories") %>
-
-<% @categories.each do |cate| %>
-  <div class="span8 well">
-    <h4><%= link_to "#{cate.name}", "#{edit_category_path(cate)}" %></h4>
-    <p><a href="<%= category_path(cate) %>"><%= pluralize(cate.posts.count, "post") %></a></p>
-  </div>
-<% end %>

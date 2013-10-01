@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  include Voteable
+  include TealeafVoteable
   validates_presence_of :title, message: "Title can\'t be blank."
   
   belongs_to :user

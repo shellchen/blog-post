@@ -1,0 +1,26 @@
+= render("layouts/topic", topic: @post.title)
+
+%div
+  %p
+    %span
+      %i.icon-book
+      Description
+      %p= @post.description
+  %p
+    %span
+      %i.icon-bookmark
+      URL
+      %p= link_to("#{@post.url}", @post.url)
+  %p
+    %span
+      %i.icon-user
+      Creator
+      %p= label_tag "#{@post.user.username}"
+%hr
+
+%p
+  %i.icon-comment
+  = pluralize(@post.comments.count, "Comment")
+= render("comment", collect_comments: @post.comments)
+- if logged_in?
+  = render "comments/comment_form"

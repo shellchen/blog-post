@@ -1,0 +1,21 @@
+- collect_posts.each do |post|
+  %div.row
+    %div.span1.well.text-center
+      = link_to("", vote_post_path(post, vote: true), method: :post, remote: true, class: "icon-arrow-up") if logged_in?
+      %br/
+      %span{id: "post-#{post.slug}-vote"}= pluralize(post_vote_factor(post), "vote")
+      %br/
+      = link_to("", vote_post_path(post, vote: false), method: :post, remote: true, class: "icon-arrow-down") if logged_in?
+    %div.span8.well
+      %h4
+        = link_to("#{post.title}", post.url)
+      %p= post.description
+      %p
+        %span.quiet posted by 
+        = post.user.username
+      %small
+        = link_to "View", post_path(post), class: "btn btn-mini"
+        = post_editable(post)
+        %span
+          %a{href: "#{post_path(post)}#post-comment"}
+            = pluralize(post.comments.count, "comment")

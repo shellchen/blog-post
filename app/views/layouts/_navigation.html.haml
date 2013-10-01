@@ -1,0 +1,8 @@
+%ul.nav
+  %li= link_to "Postit!", root_path, :class => 'brand'
+  %li= all_or_user_posts_link
+  = render "shared/categories_dropdown_box"
+  .btn-group.nav_item
+    = login_logout_link
+    = signup_link
+    = new_post_link
